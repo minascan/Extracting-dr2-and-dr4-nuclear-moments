@@ -1,0 +1,17 @@
+.SUFFIXES: .f90 .mod
+
+APP_OBJ= \
+	defs.o consts.o matrices.o solver.o main.o
+
+extract_dr2_dr4 : $(APP_OBJ)
+	gfortran -o extract_dr2_dr4 $(APP_OBJ) -llapack
+
+APP_SRC =  \
+	defs.f90 consts.f90 matrices.f90 solver.f90 main.f90
+
+.f90.o: $(APP_SRC)
+	gfortran -c $(APP_SRC)       
+
+clean:
+	-rm -f *.o core  *.mod
+
